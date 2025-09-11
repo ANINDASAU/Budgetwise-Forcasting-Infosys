@@ -1,0 +1,211 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  margin: 0;
+  color: #fff;
+  overflow-x: hidden;
+  background: linear-gradient(135deg, #ff80ff, #7f5af0, #80d0ff);
+  background-size: 300% 300%;
+  animation: gradientMove 12s ease infinite;
+  position: relative;
+}
+
+/* Gradient animation */
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 60px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 0 0 20px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.nav-links a:hover {
+  color: #ff80ff;
+}
+
+.login-btn {
+  padding: 8px 15px;
+  border: 2px solid #ff80ff;
+  border-radius: 20px;
+}
+
+.login-btn:hover {
+  background: #ff80ff;
+  color: #000;
+}
+
+/* Typing animation */
+.typing-wrapper {
+  margin-top: 20px;
+  text-align: center;
+  z-index: 1;
+  position: relative;
+}
+
+.typing-text {
+  font-size: 28px;
+  font-weight: 600;
+  color: #ffffff;
+  border-right: 3px solid #ff80ff;
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+  padding: 10px 20px;
+}
+
+/* Hero Section */
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 100px 60px;
+  height: 100vh;
+  position: relative;
+}
+
+.hero-content {
+  flex: 1;
+  padding-right: 40px;
+}
+
+.hero-content h1 {
+  font-size: 48px;
+}
+
+.hero-content h2 {
+  font-size: 36px;
+  margin: 10px 0;
+  color: #ffd6ff;
+}
+
+.hero-content p {
+  margin-top: 10px;
+  font-size: 20px;
+  color: #f0eaff;
+}
+
+.hero-design {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Chart */
+#expenseChart {
+  max-width: 600px !important;
+  max-height: 400px !important;
+}
+
+/* Sections */
+section {
+  padding: 80px 60px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.about, .collaborators, .contact {
+  background: rgba(255, 255, 255, 0.05);
+  margin: 40px;
+  border-radius: 20px;
+  padding: 40px;
+}
+
+/* Bubble background */
+.bubbles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.bubbles span {
+  position: absolute;
+  display: block;
+  bottom: -150px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+}
+
+/* Bubble size + delays */
+.bubbles span:nth-child(1) { width: 40px; height: 40px; left: 10%; animation-duration: 18s; }
+.bubbles span:nth-child(2) { width: 20px; height: 20px; left: 25%; animation-duration: 22s; animation-delay: 4s; }
+.bubbles span:nth-child(3) { width: 60px; height: 60px; left: 40%; animation-duration: 25s; animation-delay: 2s; }
+.bubbles span:nth-child(4) { width: 30px; height: 30px; left: 55%; animation-duration: 20s; animation-delay: 6s; }
+.bubbles span:nth-child(5) { width: 80px; height: 80px; left: 70%; animation-duration: 26s; }
+.bubbles span:nth-child(6) { width: 25px; height: 25px; left: 85%; animation-duration: 24s; animation-delay: 3s; }
+.bubbles span:nth-child(7) { width: 15px; height: 15px; left: 15%; animation-duration: 19s; animation-delay: 8s; }
+.bubbles span:nth-child(8) { width: 50px; height: 50px; left: 35%; animation-duration: 23s; }
+.bubbles span:nth-child(9) { width: 70px; height: 70px; left: 60%; animation-duration: 28s; animation-delay: 5s; }
+.bubbles span:nth-child(10){ width: 20px; height: 20px; left: 90%; animation-duration: 18s; animation-delay: 2s; }
+
+/* Section-specific directions */
+#home .bubbles span { animation: rise var(--dur, 20s) linear infinite; }
+#about .bubbles span { animation: floatSideways var(--dur, 20s) linear infinite; }
+#collaborators .bubbles span { animation: floatDiagonal var(--dur, 22s) linear infinite; }
+#contact .bubbles span { animation: fall var(--dur, 20s) linear infinite; }
+
+/* Animations */
+@keyframes rise {
+  0%   { transform: translateY(0) scale(1); opacity: 0.4; }
+  50%  { opacity: 0.8; }
+  100% { transform: translateY(-110vh) scale(1.2); opacity: 0; }
+}
+
+@keyframes floatSideways {
+  0%   { transform: translateX(0) scale(1); opacity: 0.4; }
+  50%  { opacity: 0.8; }
+  100% { transform: translateX(110vw) scale(1.2); opacity: 0; }
+}
+
+@keyframes floatDiagonal {
+  0%   { transform: translate(0,0) scale(1); opacity: 0.4; }
+  50%  { opacity: 0.8; }
+  100% { transform: translate(100vw,-110vh) scale(1.2); opacity: 0; }
+}
+
+@keyframes fall {
+  0%   { transform: translateY(-110vh) scale(1); opacity: 0.4; }
+  50%  { opacity: 0.8; }
+  100% { transform: translateY(0) scale(1.2); opacity: 0; }
+}
