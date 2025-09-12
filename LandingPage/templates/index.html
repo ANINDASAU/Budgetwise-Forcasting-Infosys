@@ -13,12 +13,12 @@
   <!-- Navbar -->
   <header>
     <nav class="navbar">
-      <div class="logo">AI Expense</div>
+      <div class="logo">AI Expense Forecasting</div>
       <ul class="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
+        <li><a href="#home">HOME</a></li>
+        <li><a href="#about">ABOUT</a></li>
         <li><a href="#collaborators">Collaborators</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#contact">CONTACTS</a></li>
         <li><a href="/login" class="login-btn">Login / SignUp</a></li>
       </ul>
     </nav>
@@ -32,14 +32,28 @@
   <!-- Home Section -->
   <section id="home" class="hero">
     <div class="bubbles">
-      <span></span><span></span><span></span><span></span><span></span>
-      <span></span><span></span><span></span><span></span><span></span>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
     </div>
 
     <div class="hero-content">
-      <h1>Let’s take your Journey with</h1>
-      <h2>Budgetwise</h2>
-      <p>An AI based Expense Forecasting Project</p>
+      <h1>Let’s take you to Journey with</h1>
+      <br>
+      <h2>Budgetwise AI Expense Forecasting</h2>
+      <p>An AI based Expense Forecasting Project that helps users to get suggestions from AI model about spending their money on expenses. It will help you before spending your money any costly product as your Parent suggest!</p>
     </div>
     <div class="hero-design">
       <canvas id="expenseChart"></canvas>
@@ -48,50 +62,56 @@
 
   <!-- About Section -->
   <section id="about" class="about">
-    <div class="bubbles">
-      <span></span><span></span><span></span><span></span><span></span>
-      <span></span><span></span><span></span><span></span><span></span>
-    </div>
-    <h2>About Budgetwise</h2>
+    <!-- Bubble effect removed from about section -->
+    <h2>About</h2>
+    <br>
     <p>
-      Budgetwise is an AI-based expense forecasting tool designed to help
-      individuals and businesses predict their future spending patterns
-      using machine learning.
+      BudgetWise is an AI-powered expense forecasting tool that helps individuals and businesses manage their finances more effectively. By analyzing past spending patterns with machine learning models such as ARIMA, Prophet, Random Forest, and LSTM, it provides accurate predictions of future expenses. The platform offers a simple interface to record expenses, view summaries, and explore visual charts for better insights. With smart alerts and adaptive learning, BudgetWise makes financial planning easier, helping users avoid overspending and build better saving habits.
     </p>
   </section>
 
   <!-- Collaborators Section -->
   <section id="collaborators" class="collaborators">
-    <div class="bubbles">
-      <span></span><span></span><span></span><span></span><span></span>
-      <span></span><span></span><span></span><span></span><span></span>
+    <h2>COLLABORATORS</h2>
+    <div class="collaborator-cards">
+      <div class="collaborator-card">
+        <h3>Aninda Sau</h3>
+        <p>Frontend, dataset creation, and model building. Led the UI/UX and help for creating Model</p>
+      </div>
+      <div class="collaborator-card">
+        <h3>Vishalini P</h3>
+        <p>Model building. Focused on developing and optimizing the core machine learning algorithms for expense prediction.</p>
+      </div>
+      <div class="collaborator-card">
+        <h3>Jyothi Sri Lakshmi Kuna</h3>
+        <p>Frontend design. Crafted the visual layout and ensured a seamless user experience across the platform.</p>
+      </div>
+      <div class="collaborator-card">
+        <h3>Aishwariya</h3>
+        <p>Data entry and help in model building.Helps to managed data collection.</p>
+      </div>
+      <div class="collaborator-card">
+        <h3>Aman Kumar</h3>
+        <p>Frontend. Help to Create UI design</p>
+      </div>
     </div>
-    <h2>Collaborators</h2>
-    <p>
-      This project is built with contributions from students, mentors, and industry experts.
-    </p>
   </section>
 
   <!-- Contact Section -->
   <section id="contact" class="contact">
-    <div class="bubbles">
-      <span></span><span></span><span></span><span></span><span></span>
-      <span></span><span></span><span></span><span></span><span></span>
-    </div>
     <h2>Contact Us</h2>
-    <p>Email: support@budgetwise.ai</p>
-    <p>Follow us:</p>
     <div class="social-icons">
-      <a href="#"><img src="https://img.icons8.com/ios-filled/50/ffffff/twitter.png"/></a>
-      <a href="#"><img src="https://img.icons8.com/ios-filled/50/ffffff/facebook.png"/></a>
-      <a href="#"><img src="https://img.icons8.com/ios-filled/50/ffffff/github.png"/></a>
+      <a href="mailto:anindasau@gmail.com" target="_blank" title="Gmail">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/gmail-new.png" alt="Gmail"/>
+      </a>
+      <a href="https://github.com/ANINDASAU/Budgetwise-Forcasting-Infosys" target="_blank" title="GitHub">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/github.png" alt="GitHub"/>
+      </a>
+      <a href="https://t.me/+PhWi8MybUpdmYzNl" target="_blank" title="Telegram">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/telegram.png" alt="Telegram"/>
+      </a>
     </div>
   </section>
-
-  <!-- Footer -->
-  <footer>
-    <p>© 2025 Budgetwise. All Rights Reserved.</p>
-  </footer>
 
   <!-- Scripts -->
   <script>
@@ -149,7 +169,7 @@
     });
 
     // Typing effect
-    const text = "Welcome to the Journey of Expense Forecasting";
+    const text = "WELCOME to the Journey of Expense Forecasting";
     const typingText = document.querySelector(".typing-text");
     let i = 0;
     let isDeleting = false;
