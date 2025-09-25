@@ -20,7 +20,15 @@
                 <button onclick="showPage('dashboard')">📊 Dashboard</button>
                 <button onclick="showPage('expenses')">💳 Expenses</button>
                 <button onclick="showPage('reports')">📈 Reports</button>
-                <button onclick="logout()">🚪 Logout</button>
+            </div>
+            <div class="profile-menu-container">
+                <div class="profile-icon" id="profileIcon" onclick="toggleProfileDropdown()">
+                    <img src="https://ui-avatars.com/api/?name=User&background=667eea&color=fff&rounded=true" alt="Profile" style="width:36px;height:36px;border-radius:50%;cursor:pointer;">
+                </div>
+                <div class="profile-dropdown" id="profileDropdown">
+                    <button onclick="editUsername()">Edit Username</button>
+                    <button onclick="logout()">Logout</button>
+                </div>
             </div>
         </div>
     </nav>

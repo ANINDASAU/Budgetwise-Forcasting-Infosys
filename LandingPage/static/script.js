@@ -1,3 +1,28 @@
+// --- Profile Dropdown Logic ---
+function toggleProfileDropdown() {
+    const dropdown = document.getElementById('profileDropdown');
+    dropdown.classList.toggle('show');
+}
+
+// Hide dropdown when clicking outside
+document.addEventListener('click', function(event) {
+    const profileIcon = document.getElementById('profileIcon');
+    const dropdown = document.getElementById('profileDropdown');
+    if (!profileIcon.contains(event.target) && !dropdown.contains(event.target)) {
+        dropdown.classList.remove('show');
+    }
+});
+
+// Edit Username (placeholder)
+function editUsername() {
+    const newName = prompt('Enter new username:');
+    if (newName) {
+        // You can add AJAX/Flask call here to update username in backend
+        alert('Username updated to: ' + newName);
+        // Optionally update avatar
+        document.querySelector('.profile-icon img').src = `https://ui-avatars.com/api/?name=${encodeURIComponent(newName)}&background=667eea&color=fff&rounded=true`;
+    }
+}
 // --- Logout: Show login page and hide nav/dashboard ---
 function logout() {
     // If loginPage exists, show it and hide nav/dashboard
