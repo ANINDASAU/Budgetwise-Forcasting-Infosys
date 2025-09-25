@@ -1,3 +1,140 @@
+// XEPO Help Tooltip Logic
+function cycleXepoHelpTooltip() {
+    const tooltip = document.getElementById('xepo-help-tooltip');
+    if (!tooltip) return;
+    let visible = false;
+    function show() {
+        tooltip.classList.add('show');
+        visible = true;
+        setTimeout(hide, 2500); // Show for 2.5s
+    }
+    function hide() {
+        tooltip.classList.remove('show');
+        visible = false;
+        setTimeout(show, 6000); // Hide for 6s, then show again
+    }
+    show();
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    // ...existing code...
+    if (document.getElementById('xepo-help-tooltip')) {
+        cycleXepoHelpTooltip();
+    }
+});
+// XEPO Chatbot Logic
+const XEPO_QUESTIONS = [
+    {q: 'What is budget?', a: 'A budget is a plan to manage your income and expenses over a period of time. It helps you control spending and save money.'},
+    {q: 'What is expense?', a: 'An expense is the money you spend on goods, services, or bills. Tracking expenses helps you stay within your budget.'},
+    {q: 'How can I log in ?', a: 'To log in, click the Login button on the top right or visit the /login page and enter your credentials.'},
+    {q: 'How can I signUp ?', a: 'To sign up, click the Sign Up button visit signup page and fill in your details.'},
+    {q: 'How does BudgetWise help me?', a: 'BudgetWise helps you track your expenses, set budgets, and analyze your spending to improve your financial health.'},
+    {q: 'How to add an expense?', a: 'Go to the Expenses page and use the Add New Expense form to record your spending.'},
+    {q: 'How to view reports?', a: 'Go to the Reports page to see analytics and insights about your spending.'},
+    {q: 'How to Contact to Developers?', a: 'Go to the end of this by scrolling and find the Contact Us section for contact.'}
+];
+
+function toggleXepoChat() {
+    const chatWindow = document.getElementById('xepo-chat-window');
+    chatWindow.classList.toggle('open');
+    if (chatWindow.classList.contains('open')) {
+        // Always set chat window to full size immediately when opened
+        chatWindow.style.width = '340px';
+        chatWindow.style.maxHeight = '480px';
+        chatWindow.style.height = '480px';
+        setTimeout(() => {
+            document.getElementById('xepo-chat-input').focus();
+        }, 200);
+        if (!chatWindow.dataset.initiated) {
+            xepoBotGreet();
+            chatWindow.dataset.initiated = '1';
+        }
+    } else {
+        // Reset height on close for consistency
+        chatWindow.style.height = '';
+    }
+}
+
+function xepoBotGreet() {
+    xepoAddBotMsg('Hello, My name is Xepo; Your AI assistant.');
+}
+
+function xepoAddBotMsg(msg, questions=[]) {
+    const chatBody = document.getElementById('xepo-chat-body');
+    const msgDiv = document.createElement('div');
+    msgDiv.className = 'xepo-msg xepo-bot';
+    msgDiv.innerHTML = msg;
+    chatBody.appendChild(msgDiv);
+    if (questions.length) {
+        const row = document.createElement('div');
+        row.className = 'xepo-questions-row';
+        questions.forEach(q => {
+            const btn = document.createElement('button');
+            btn.className = 'xepo-question-btn';
+            btn.textContent = q.q;
+            btn.onclick = () => xepoHandleQuestion(q.q);
+            row.appendChild(btn);
+        });
+        chatBody.appendChild(row);
+    }
+    chatBody.scrollTop = chatBody.scrollHeight;
+}
+
+function xepoAddUserMsg(msg) {
+    const chatBody = document.getElementById('xepo-chat-body');
+    const msgDiv = document.createElement('div');
+    msgDiv.className = 'xepo-msg xepo-user';
+    msgDiv.textContent = msg;
+    chatBody.appendChild(msgDiv);
+    chatBody.scrollTop = chatBody.scrollHeight;
+}
+
+function sendXepoMessage() {
+    const input = document.getElementById('xepo-chat-input');
+    let msg = input.value.trim();
+    if (!msg) return;
+    xepoAddUserMsg(msg);
+    input.value = '';
+    setTimeout(() => xepoBotReply(msg), 400);
+}
+
+function xepoBotReply(msg) {
+    const lower = msg.toLowerCase();
+    if (["hello","hi","hii"].includes(lower)) {
+        xepoAddBotMsg('Hello, How can I help you?', XEPO_QUESTIONS);
+        return;
+    }
+    // Check for question match (case-insensitive, ignore spaces and ?)
+    let found = null;
+    for (const q of XEPO_QUESTIONS) {
+        if (q.q.replace(/\s|\?/gi,'').toLowerCase() === lower.replace(/\s|\?/gi,'').toLowerCase()) {
+            found = q;
+            break;
+        }
+    }
+    if (found) {
+        xepoAddBotMsg(found.a);
+        setTimeout(() => xepoAddBotMsg('Do you have more questions?', [
+            {q:'Yes',a:''},{q:'No',a:''}
+        ]), 500);
+        return;
+    }
+    if (["yes"].includes(lower)) {
+        xepoAddBotMsg('Please ask.', XEPO_QUESTIONS);
+        return;
+    }
+    if (["no"].includes(lower)) {
+        xepoAddBotMsg('Thank you, Have a nice day.');
+        return;
+    }
+    // Not understood
+    xepoAddBotMsg('Sorry, I can not understand your question.', XEPO_QUESTIONS);
+}
+
+function xepoHandleQuestion(q) {
+    xepoAddUserMsg(q);
+    setTimeout(() => xepoBotReply(q), 400);
+}
 // --- Profile Dropdown Logic ---
 function toggleProfileDropdown() {
     const dropdown = document.getElementById('profileDropdown');

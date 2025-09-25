@@ -1,3 +1,21 @@
+  <!-- Xepo Chatbot Floating Button and Chat Window -->
+  <div id="xepo-chatbot">
+    <div id="xepo-help-tooltip" class="xepo-help-tooltip">Need Help!</div>
+    <div id="xepo-bot-btn" onclick="toggleXepoChat()" title="Chat with Xepo">
+      <span style="font-size: 2rem;">🤖</span>
+    </div>
+    <div id="xepo-chat-window">
+      <div id="xepo-chat-header">
+        <span>Xepo</span>
+        <button onclick="toggleXepoChat()" id="xepo-close-btn">×</button>
+      </div>
+      <div id="xepo-chat-body"></div>
+      <div id="xepo-chat-input-row">
+        <input type="text" id="xepo-chat-input" placeholder="Type your message..." onkeydown="if(event.key==='Enter'){sendXepoMessage();}">
+        <button onclick="sendXepoMessage()">Send</button>
+      </div>
+    </div>
+  </div>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -196,5 +214,6 @@
 
     typeEffect();
   </script>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
