@@ -660,34 +660,73 @@ body {
   margin-bottom: 25px;
   text-align: center;
 }
+/* Expense Table Improvements */
 .table-responsive {
   overflow-x: auto;
   border-radius: 15px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.13);
 }
 .table {
   width: 100%;
   border-collapse: collapse;
   margin: 25px 0;
-  background: white;
+  background: #fff;
+  font-size: 1.08rem;
 }
 .table th,
 .table td {
-  padding: 18px;
+  padding: 18px 14px;
   text-align: left;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1.5px solid #e0e0e0;
 }
 .table th {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  font-weight: 600;
+  background: linear-gradient(135deg, #8e0dde 0%, #39c2fa 100%);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.12rem;
+  letter-spacing: 0.5px;
   position: sticky;
   top: 0;
+  z-index: 2;
+}
+.table td {
+  color: #232946;
+  font-weight: 500;
+  font-size: 1.05rem;
+}
+.table tr {
+  transition: background 0.2s;
 }
 .table tr:hover {
-  background: rgba(102, 126, 234, 0.05);
+  background: #f3f6ff;
   transform: scale(1.01);
-  transition: all 0.2s ease;
+}
+.table-total-row {
+  background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%) !important;
+  font-weight: bold;
+  font-size: 1.12rem;
+  border-top: 3px solid #8e0dde;
+  color: #232946;
+}
+.table-total-row td {
+  font-weight: 700;
+  color: #232946;
+}
+.add-expense-success {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  color: #fff;
+  padding: 14px;
+  border-radius: 12px;
+  margin-bottom: 18px;
+  text-align: center;
+  font-size: 1.08rem;
+  font-weight: 600;
+  display: none;
+  animation: fadeIn 0.5s ease;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 .page {
   display: none;

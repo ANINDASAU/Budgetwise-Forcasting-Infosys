@@ -405,6 +405,8 @@ function addExpense(event) {
             expenseData[category] = amount;
         }
         const successMsg = document.getElementById('addExpenseSuccess');
+        successMsg.textContent = `✅ Expense for ${category} (₹${amount.toLocaleString()}) added successfully!`;
+        successMsg.className = 'add-expense-success';
         successMsg.style.display = 'block';
         setTimeout(() => { successMsg.style.display = 'none'; }, 3000);
         document.getElementById('expenseCategory').value = '';
@@ -587,9 +589,9 @@ function populateExpenseTable() {
         const percentage = ((amount / total) * 100).toFixed(1);
         html += `
             <tr>
-                <td><strong>${getCategoryIcon(category)} ${category}</strong></td>
-                <td>₹${amount.toLocaleString()}</td>
-                <td>${percentage}%</td>
+                <td><span style="font-size:1.2em;font-weight:700;">${getCategoryIcon(category)}</span> <span style="font-weight:600;">${category}</span></td>
+                <td style="color:#8e0dde;font-weight:700;">₹${amount.toLocaleString()}</td>
+                <td style="color:#39c2fa;font-weight:700;">${percentage}%</td>
                 <td>
                     <button onclick="deleteExpenseCategory('${category}')" 
                             class="btn" style="padding: 8px 16px; font-size: 14px; background: linear-gradient(135deg, #ff6b6b 0%, #ff5252 100%);">
@@ -600,7 +602,7 @@ function populateExpenseTable() {
         `;
     });
     html += `
-        <tr style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); font-weight: bold; border-top: 3px solid #667eea;">
+        <tr class="table-total-row">
             <td><strong>TOTAL</strong></td>
             <td><strong>₹${total.toLocaleString()}</strong></td>
             <td><strong>100.0%</strong></td>
