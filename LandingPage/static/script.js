@@ -1,3 +1,151 @@
+// XEPO Chatbot Modal Logic for home.html
+const XEPOL_QUESTIONS = [
+    {q: 'What is budget?', a: 'A budget is a plan to manage your income and expenses over a period of time. It helps you control spending and save money.'},
+    {q: 'What is expense?', a: 'An expense is the money you spend on goods, services, or bills. Tracking expenses helps you stay within your budget.'},
+    {q: 'How does BudgetWise help me?', a: 'BudgetWise helps you track your expenses, set budgets, and analyze your spending to improve your financial health.'},
+    {q: 'How to add an expense?', a: 'Go to the Expenses tab and use the Add New Expense form to record your spending.'},
+    {q: 'How to view reports?', a: 'Go to the Reports tab to see analytics and insights about your spending.'},
+    {q: 'How to contact developers?', a: 'Go to the Contact Us section at the bottom of the page.'}
+];
+
+function openXepolChatbot() {
+    const modal = document.getElementById('xepol-chatbot-modal');
+    const body = document.getElementById('xepol-chatbot-body');
+    const input = document.getElementById('xepol-chatbot-input');
+    const navBtn = document.getElementById('chatbotNavBtn');
+    const arrow = document.getElementById('xepol-chatbot-arrow');
+    const box = document.getElementById('xepol-chatbot-box');
+    modal.classList.add('open');
+    if (navBtn) navBtn.classList.add('active');
+    // Position arrow below Chatbot tab
+    if (navBtn && arrow && box) {
+        const navRect = navBtn.getBoundingClientRect();
+        const scrollY = window.scrollY || document.documentElement.scrollTop;
+        arrow.style.top = (navRect.bottom + scrollY + 2) + 'px';
+        arrow.style.left = (navRect.left + navRect.width/2 - 22) + 'px';
+        // Position box below arrow
+        box.style.top = (navRect.bottom + scrollY + 30) + 'px';
+        box.style.left = (navRect.left + navRect.width/2 - box.offsetWidth/2) + 'px';
+    }
+    body.innerHTML = '';
+    setTimeout(() => { input.focus(); }, 200);
+    xepolBotGreet();
+}
+
+function closeXepolChatbot() {
+    document.getElementById('xepol-chatbot-modal').classList.remove('open');
+    const navBtn = document.getElementById('chatbotNavBtn');
+    if (navBtn) navBtn.classList.remove('active');
+}
+
+function xepolBotGreet() {
+    xepolAddBotMsg('Hi!');
+    xepolAddBotMsg('I am your AI assistant, XepoL.');
+    setTimeout(() => xepolAddBotMsg('How can I help you?', XEPOL_QUESTIONS), 400);
+}
+
+function xepolAddBotMsg(msg, questions=[]) {
+    const chatBody = document.getElementById('xepol-chatbot-body');
+    const msgDiv = document.createElement('div');
+    msgDiv.className = 'xepol-msg xepol-bot';
+    msgDiv.innerHTML = msg;
+    chatBody.appendChild(msgDiv);
+    if (questions.length) {
+        const row = document.createElement('div');
+        row.className = 'xepol-questions-row';
+        questions.forEach(q => {
+            const btn = document.createElement('button');
+            btn.className = 'xepol-question-btn';
+            btn.textContent = q.q;
+            btn.onclick = () => xepolHandleQuestion(q.q);
+            row.appendChild(btn);
+        });
+        chatBody.appendChild(row);
+    }
+    chatBody.scrollTop = chatBody.scrollHeight;
+}
+
+function xepolAddUserMsg(msg) {
+    const chatBody = document.getElementById('xepol-chatbot-body');
+    const msgDiv = document.createElement('div');
+    msgDiv.className = 'xepol-msg xepol-user';
+    msgDiv.textContent = msg;
+    chatBody.appendChild(msgDiv);
+    chatBody.scrollTop = chatBody.scrollHeight;
+}
+
+function sendXepolMessage() {
+    const input = document.getElementById('xepol-chatbot-input');
+    let msg = input.value.trim();
+    if (!msg) return;
+    xepolAddUserMsg(msg);
+    input.value = '';
+    setTimeout(() => xepolBotReply(msg), 400);
+}
+
+function xepolBotReply(msg) {
+    const lower = msg.toLowerCase().replace(/\s|\?/gi,'');
+    if (["hello","hi","hii"].includes(lower)) {
+        xepolAddBotMsg('Hello, how can I help you?', XEPOL_QUESTIONS);
+        return;
+    }
+    // Check for question match (case-insensitive, ignore spaces and ?)
+    let found = null;
+    for (const q of XEPOL_QUESTIONS) {
+        if (q.q.replace(/\s|\?/gi,'').toLowerCase() === lower) {
+            found = q;
+            break;
+        }
+    }
+    if (found) {
+        xepolAddBotMsg(found.a);
+        setTimeout(() => xepolAddBotMsg('Do you want more ideas?', [
+            {q:'Yes',a:''},{q:'No',a:''}
+        ]), 500);
+        return;
+    }
+    if (["yes"].includes(lower)) {
+        xepolAddBotMsg('How can I help you?', XEPOL_QUESTIONS);
+        return;
+    }
+    if (["no"].includes(lower)) {
+        xepolAddBotMsg('Thank you for your time.');
+        return;
+    }
+    // Not understood
+    xepolAddBotMsg('Sorry! I am unable to answer it. You can ask the below related question:', XEPOL_QUESTIONS);
+}
+
+function xepolHandleQuestion(q) {
+    xepolAddUserMsg(q);
+    setTimeout(() => xepolBotReply(q), 400);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    // ...existing code...
+    // Chatbot Nav Button
+    const chatbotBtn = document.getElementById('chatbotNavBtn');
+    if (chatbotBtn) {
+        chatbotBtn.addEventListener('click', openXepolChatbot);
+    }
+    // Chatbot Close Button
+    const chatbotClose = document.getElementById('xepol-chatbot-close');
+    if (chatbotClose) {
+        chatbotClose.addEventListener('click', closeXepolChatbot);
+    }
+    // Chatbot Send Button
+    const chatbotSend = document.getElementById('xepol-chatbot-send');
+    if (chatbotSend) {
+        chatbotSend.addEventListener('click', sendXepolMessage);
+    }
+    // Chatbot Input Enter Key
+    const chatbotInput = document.getElementById('xepol-chatbot-input');
+    if (chatbotInput) {
+        chatbotInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') sendXepolMessage();
+        });
+    }
+});
 // XEPO Help Tooltip Logic
 function cycleXepoHelpTooltip() {
     const tooltip = document.getElementById('xepo-help-tooltip');

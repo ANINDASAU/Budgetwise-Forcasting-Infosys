@@ -20,6 +20,7 @@
                 <button onclick="showPage('dashboard')">📊 Dashboard</button>
                 <button onclick="showPage('expenses')">💳 Expenses</button>
                 <button onclick="showPage('reports')">📈 Reports</button>
+                <button id="chatbotNavBtn" class="chatbot-nav-btn">🤖 Chatbot</button>
             </div>
             <div class="profile-menu-container">
                 <div class="profile-icon" id="profileIcon" onclick="toggleProfileDropdown()">
@@ -33,7 +34,21 @@
         </div>
     </nav>
 
-    <!-- Dashboard, Expenses, and Reports Pages Only -->
+        <!-- XEPO Chatbot Modal -->
+            <div id="xepol-chatbot-modal" class="xepol-chatbot-modal">
+                <div id="xepol-chatbot-arrow" class="xepol-chatbot-arrow"></div>
+                <div id="xepol-chatbot-box" class="xepol-chatbot-box">
+                    <div class="xepol-chatbot-header">
+                        <span style="font-weight:700;font-size:1.2rem;">XepoL</span>
+                        <button id="xepol-chatbot-close" class="xepol-chatbot-close">×</button>
+                    </div>
+                    <div id="xepol-chatbot-body" class="xepol-chatbot-body"></div>
+                    <div class="xepol-chatbot-input-row">
+                        <input type="text" id="xepol-chatbot-input" placeholder="Type your message..." autocomplete="off">
+                        <button id="xepol-chatbot-send">Send</button>
+                    </div>
+                </div>
+            </div>
 
         <!-- Dashboard Page -->
     <div class="page active" id="dashboardPage">
